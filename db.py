@@ -24,7 +24,7 @@ class Anime(BaseModel):
         return {'name': self.name, 'url': self.url, 'follow': self.follow}
 
     def to_alfred_item(self):
-        return {'title': self.name, 'subtitle': self.url, 'arg': self.url}
+        return {'title': self.name, 'subtitle': self.url, 'arg': self.url, "autocomplete": self.name}
 
     @staticmethod
     def get_all(filters: List[peewee.Expression] = None, op=operator.and_):

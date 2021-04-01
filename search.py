@@ -1,5 +1,7 @@
+import json
 import sys
 
+from anime import get_info_about_anime
 from db import Anime
 from utils import display_anime_list, get_followed_anime, get_not_followed_anime, get_all_anime
 
@@ -20,4 +22,21 @@ if __name__ == '__main__':
     elif len(args) > 1:
         name = ' '.join(args[1:])
         anime_list = fun_dict[search_type]([Anime.name.contains(name)])
-        display_anime_list(anime_list)
+        if len(anime_list) != 1:
+            display_anime_list(anime_list)
+        else:
+            data = get_info_about_anime(anime_list[0]['arg'])
+            print(
+                json.dumps(
+                    {
+                        "items": [
+                            {
+                                "title": name,
+                                "subtitle": f"{value['state']} - {value['date']}",
+                                "arg": value['link'].lower(),
+                                "autocomplete": name,
+                            } for name, value in data.items()
+                        ]
+                    },
+                    ensure_ascii=False)
+            )

@@ -8,7 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from db import Anime
-from utils import get_all_anime, get_followed_anime, display_anime_list
+from utils import get_followed_anime, display_anime_list
 
 
 def parse_episode(ep_tag, anime_main_page):
@@ -47,31 +47,27 @@ def get_info_about_anime(anime_webpage):
     return data
 
 
-args = sys.argv[1:]
-try:
-    anime_data = get_all_anime()
-    if len(args) == 0:
-        print(json.dumps({'items': anime_data}, ensure_ascii=False))
-        pass
-    else:
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    if len(args) == 1:
         a_name = args[0]
         tmp_name = a_name.lower()
 
         anime_data = get_followed_anime([Anime.url.contains(tmp_name)])
-        display_anime_list(anime_data)
-        # data = get_info_about_anime(anime_data[key])
-        # print(
-        #     json.dumps(
-        #         {
-        #             "items": [
-        #                 {
-        #                     "title": name,
-        #                     "subtitle": f"{value['state']} - {value['date']}",
-        #                     "arg": value['link'].lower()
-        #                 } for name, value in data.items()
-        #             ]
-        #         },
-        #         ensure_ascii=False)
-        # )
-except Exception as err:
-    raise err
+        if len(anime_data) > 1:
+            display_anime_list(anime_data)
+        else:
+            data = get_info_about_anime(anime_data[0]['arg'])
+            print(
+                json.dumps(
+                    {
+                        "items": [
+                            {
+                                "title": name,
+                                "subtitle": f"{value['state']} - {value['date']}",
+                                "arg": value['link'].lower()
+                            } for name, value in data.items()
+                        ]
+                    },
+                    ensure_ascii=False)
+            )

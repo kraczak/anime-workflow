@@ -38,6 +38,16 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>9A3B3068-306A-4CFD-A4CD-720CA31115B1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>D1653DC7-A65C-47EA-B957-14F1C8869FBF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -71,6 +81,25 @@
 	<string>Script Filter - Getting Started</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>9A3B3068-306A-4CFD-A4CD-720CA31115B1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -128,7 +157,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>$HOME/.pyenv/shims/python ./search.py "{query}"</string>
+				<string>$HOME/.pyenv/shims/python ./anime.py "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -337,6 +366,13 @@ A new option now exists for Script Filters, "Alfred filters results". This allow
 			<integer>495</integer>
 			<key>ypos</key>
 			<integer>590</integer>
+		</dict>
+		<key>9A3B3068-306A-4CFD-A4CD-720CA31115B1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>495</integer>
+			<key>ypos</key>
+			<integer>135</integer>
 		</dict>
 		<key>CBE312D2-CA00-4BD1-A1FD-00232CB5D4BE</key>
 		<dict>
