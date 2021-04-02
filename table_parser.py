@@ -1,6 +1,8 @@
-from typing import List, Dict, Callable
+from typing import List, Dict, Callable, Type
+from urllib.parse import urljoin
 
 from bs4 import Tag
+from pydantic import BaseModel
 
 
 class TableParser:
@@ -11,20 +13,24 @@ class TableParser:
     def parse(
             self,
             table: Tag,
+            output_class: Type[BaseModel],
             columns: List[str],
             href: List[int] = None,
+            href_getter: Callable = None,
             skip_rows: List[int] = None,
             skip_cols: List[int] = None,
-    ) -> List[Dict[str, str]]:
+            base_url: str = None
+    ) -> List:
         row_list = table.find_all(self.row_tag)
         skip_cols = skip_cols or []
         skip_rows = skip_rows or []
+        href_getter = href_getter or self.default_href_getter
         href = href or []
         result = []
         for i, row in enumerate(row_list):
             if i not in skip_rows:
-                kwargs = self.parse_row(row, columns, skip_cols, href)
-                result.append(kwargs)
+                kwargs = self.parse_row(row, columns, skip_cols, href, href_getter, base_url)
+                result.append(output_class(**kwargs))
         return result
 
     def parse_row(
@@ -33,17 +39,23 @@ class TableParser:
             columns: List[str],
             skip_cols: List[int],
             href: List[int],
-            href_getter: Callable = None
+            href_getter: Callable,
+            base_url: str = None
     ) -> Dict[str, str]:
-        href_getter = href_getter or self.default_href_getter
         kwargs = {}
+        k = 0
         for i, col_tag in enumerate(row.find_all(self.col_tag)):
             if i in href:
-                kwargs['url'] = href_getter(col_tag)
+                url = href_getter(col_tag)
+                if base_url is not None:
+                    url = urljoin(base_url, url)
+                kwargs['url'] = url
             if i not in skip_cols:
-                kwargs[columns[i]] = col_tag.get_text()
+                kwargs[columns[i-k]] = col_tag.get_text()
+            else:
+                k += 1
         return kwargs
 
     @staticmethod
-    def default_href_getter(tag: Tag):
-        return tag.find_all('a', href=True).get('href')
+    def default_href_getter(tag: Tag) -> str:
+        return tag.find('a', href=True).get('href')
