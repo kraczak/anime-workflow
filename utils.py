@@ -3,23 +3,23 @@ from typing import Dict, List
 
 import peewee
 
-from db import Anime
+from db import AnimeModel
 
 
-def get_items_from_records(rec: List[Anime]):
+def get_items_from_records(rec: List[AnimeModel]):
     return [a.to_alfred_item() for a in rec]
 
 
 def get_all_anime():
-    return get_items_from_records(Anime.get_all())
+    return get_items_from_records(AnimeModel.get_all())
 
 
 def get_followed_anime(filters: List[peewee.Expression] = None):
-    return get_items_from_records(Anime.get_followed(filters))
+    return get_items_from_records(AnimeModel.get_followed(filters))
 
 
 def get_not_followed_anime(filters: List[peewee.Expression] = None):
-    return get_items_from_records(Anime.get_not_followed(filters))
+    return get_items_from_records(AnimeModel.get_not_followed(filters))
 
 
 def display_anime_list(anime_lst: List[Dict[str, str]]):
@@ -31,7 +31,7 @@ def create_item(title: str, subtitle: str = 'test'):
 
 
 def swap_following(partial_title: str):
-    not_followed = Anime.get_all([Anime.url == partial_title])
+    not_followed = AnimeModel.get_all([AnimeModel.url == partial_title])
     for a in not_followed:
         a.follow = not a.follow
         a.save()

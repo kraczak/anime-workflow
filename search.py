@@ -2,7 +2,9 @@ import json
 import sys
 
 from anime import get_info_about_anime
-from db import Anime
+from arg_parser import parse_args
+from common import arg_sep
+from db import AnimeModel
 from utils import display_anime_list, get_followed_anime, get_not_followed_anime, get_all_anime
 
 fun_dict = {
@@ -12,7 +14,7 @@ fun_dict = {
 }
 
 if __name__ == '__main__':
-    args = sys.argv[1:]
+    args = parse_args(sys.argv[1:])
     search_type = args[0]
     if len(args) == 0 or args[0] not in fun_dict:
         sys.exit(0)
@@ -20,11 +22,14 @@ if __name__ == '__main__':
         anime_list = fun_dict[search_type]()
         display_anime_list(anime_list)
     elif len(args) > 1:
-        name = ' '.join(args[1:])
-        anime_list = fun_dict[search_type]([Anime.name.contains(name)])
-        if len(anime_list) != 1:
-            display_anime_list(anime_list)
-        else:
+        tmp_name = ' '.join(args[1:])
+        name = tmp_name
+        if name.endswith(arg_sep):
+            name = name[:-1]
+
+        anime_list = fun_dict[search_type]([AnimeModel.name.contains(name)])
+
+        if '▹' in tmp_name and len(anime_list) == 1:
             data = get_info_about_anime(anime_list[0]['arg'])
             print(
                 json.dumps(
@@ -34,9 +39,11 @@ if __name__ == '__main__':
                                 "title": name,
                                 "subtitle": f"{value['state']} - {value['date']}",
                                 "arg": value['link'].lower(),
-                                "autocomplete": name,
+                                "autocomplete": f'{tmp_name} {name}',
                             } for name, value in data.items()
                         ]
                     },
                     ensure_ascii=False)
             )
+        else:
+            display_anime_list(anime_list)

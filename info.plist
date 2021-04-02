@@ -32,23 +32,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>D1653DC7-A65C-47EA-B957-14F1C8869FBF</key>
-		<array/>
 		<key>D7EB26B5-3C66-4551-903C-5BA567A4048F</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>9A3B3068-306A-4CFD-A4CD-720CA31115B1</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>D1653DC7-A65C-47EA-B957-14F1C8869FBF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -134,7 +122,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Anime subscriber</string>
+				<string>Quick access to your favourite anime</string>
 				<key>title</key>
 				<string>Anime subscriber</string>
 				<key>type</key>
@@ -148,29 +136,6 @@
 			<string>D7EB26B5-3C66-4551-903C-5BA567A4048F</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>$HOME/.pyenv/shims/python ./anime.py "{query}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>D1653DC7-A65C-47EA-B957-14F1C8869FBF</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -349,58 +314,51 @@ A new option now exists for Script Filters, "Alfred filters results". This allow
 		<key>33E54AA2-C323-4A12-8E3A-9EB2C08C9E24</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<integer>490</integer>
 			<key>ypos</key>
-			<integer>405</integer>
+			<integer>400</integer>
 		</dict>
 		<key>94A5C55B-C881-43D2-A2B7-B0A34B824A91</key>
 		<dict>
 			<key>xpos</key>
 			<integer>220</integer>
 			<key>ypos</key>
-			<integer>550</integer>
+			<integer>530</integer>
 		</dict>
 		<key>97376BCE-553D-426F-9CC4-21AA1611ED4B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<integer>490</integer>
 			<key>ypos</key>
-			<integer>590</integer>
+			<integer>585</integer>
 		</dict>
 		<key>9A3B3068-306A-4CFD-A4CD-720CA31115B1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>495</integer>
 			<key>ypos</key>
-			<integer>135</integer>
+			<integer>230</integer>
 		</dict>
 		<key>CBE312D2-CA00-4BD1-A1FD-00232CB5D4BE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>225</integer>
+			<integer>220</integer>
 			<key>ypos</key>
-			<integer>405</integer>
-		</dict>
-		<key>D1653DC7-A65C-47EA-B957-14F1C8869FBF</key>
-		<dict>
-			<key>xpos</key>
-			<integer>495</integer>
-			<key>ypos</key>
-			<integer>250</integer>
+			<integer>400</integer>
 		</dict>
 		<key>D7EB26B5-3C66-4551-903C-5BA567A4048F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>225</integer>
+			<integer>220</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 		</dict>
 		<key>F413E45C-3FF6-46BF-BCEF-C4C809F696D9</key>
 		<dict>
 			<key>xpos</key>
 			<integer>220</integer>
 			<key>ypos</key>
-			<integer>660</integer>
+			<integer>655</integer>
 		</dict>
 	</dict>
 	<key>version</key>

@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from common import db_name, base_url
-from db import db, Anime, create_tables
+from db import db, AnimeModel, create_tables
 
 
 def fetch_anime_list(url):
@@ -30,4 +30,4 @@ if __name__ == '__main__':
 
     db_data = [{'name': name, 'url': url, 'follow': False} for name, url in data.items()]
     with db.atomic():
-        Anime.insert_many(db_data).on_conflict('replace').execute()
+        AnimeModel.insert_many(db_data).on_conflict('replace').execute()
