@@ -21,7 +21,7 @@ class Series(BaseModel):
     url: str
 
     def to_alfred_record(self):
-        return {'title': self.name, 'subtitle': self.url, 'arg': self.url}
+        return {'title': self.name, 'subtitle': self.url, 'arg': self.url, "autocomplete": self.name + '▹'}
 
 
 class Episode(BaseModel):
@@ -31,7 +31,8 @@ class Episode(BaseModel):
     url: str
 
     def to_alfred_record(self):
-        return {'title': self.name, 'subtitle': f'{self.source} - {self.date}', 'arg': self.url}
+        return {'title': self.name, 'subtitle': f'{self.source} - {self.date}', 'arg': self.url,
+                "autocomplete": self.name + '▹'}
 
 
 class Player(BaseModel):
@@ -40,4 +41,4 @@ class Player(BaseModel):
     url: str
 
     def to_alfred_record(self):
-        return {'title': self.server, 'subtitle': self.link, 'arg': self.url}
+        return {'title': self.server, 'subtitle': self.link, 'arg': self.url, "autocomplete": self.server + '▹'}

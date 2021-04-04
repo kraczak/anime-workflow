@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import json
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from urllib.parse import urljoin
 
 import requests
